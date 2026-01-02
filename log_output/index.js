@@ -1,8 +1,17 @@
-const randomString = Math.random().toString(36).substring(2, 15);
+const http = require('http');
 
-const handleInterval = () => {
+const port = process.env.PORT || 3000;
+
+const getStatusText = () => {
+    const randomString = Math.random().toString(36).substring(2, 15);
     const timestamp = new Date().toISOString();
-    console.log(`${timestamp}: ${randomString}`);
+    return `${timestamp}: ${randomString}`;
 }
 
-setInterval(handleInterval, 5000);
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end(getStatusText() + "\n");
+})
+
+server.listen(port)
