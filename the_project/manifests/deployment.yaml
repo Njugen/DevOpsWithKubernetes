@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: todo-app
-          image: njugen/todo-app:1.6
+          image: njugen/todo-app:1.8
+          imagePullPolicy: Always
           env:
             - name: PORT
               value: "3000"
