@@ -1,6 +1,6 @@
 # Instructions
 
-You can create a deployment of this app immediately by using this command. This creates a deployment on your local machine, using the latest revision of __njugen/log_output__ image hosted on Docker Hub.
+You can create a deployment of this app immediately by using this command. This creates a deployment on your local machine, using the version (1.2) of __njugen/log_output__ image hosted on Docker Hub.
 ``
     kubectl apply -f https://raw.githubusercontent.com/Njugen/DevOpsWithKubernetes/refs/heads/1.3/log_output/manifests/deployment.yaml
 ``
