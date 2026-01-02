@@ -1,8 +1,8 @@
 # Instructions
 
-This app has been pushed to Docker Hub, you may use it in your local cluster through this command:
+You can create a deployment of this app immediately by using this command. This creates a deployment on your local machine, using the latest revision of __njugen/log_output__ image hosted on Docker Hub.
 ``
-    kubectl create deployment thai-logout-app --image=njugen/log_output
+    kubectl apply -f https://raw.githubusercontent.com/Njugen/DevOpsWithKubernetes/refs/heads/1.3/log_output/manifests/deployment.yaml
 ``
 
 The app generates a random message at start up, and prints it out in the console/cmd every 5 seconds. Use this command to watch it:
