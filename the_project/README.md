@@ -1,20 +1,22 @@
-You can create a deployment of this app immediately by using this command. This creates a deployment on your local machine, using the version tag 1.4 of __njugen/todo-app__ image hosted on Docker Hub.
+You can create a deployment of this app immediately by using this command. This creates a deployment on your local machine, using the version tag 1.5 of __njugen/todo-app__ image hosted on Docker Hub.
 
-Please note, this does not use the same name as __njugen/todo-app-1.2__ from previous exercises
+The manifest now has a PORT environmental variable defined for the container. Port set to 3000.
+
 ```
-    kubectl apply -f https://raw.githubusercontent.com/Njugen/DevOpsWithKubernetes/refs/heads/1.4/the_project/manifests/deployment.yaml
+    kubectl apply -f https://raw.githubusercontent.com/Njugen/DevOpsWithKubernetes/refs/heads/1.5/the_project/manifests/deployment.yaml
 ```
 
 
-This release (1.4) prints the following at startup:
-``
-    Server started in port NNNN
-``
+After deployment, initiate a port forwarding session.
 
-This is due to the environmental variable being undefined (it will be defined if exposed in the Dockerfile, but I'll skip it at this point as it isn't part of the task...)
+```
+    kubectl port-forward PODNAME 3003:3000
+```
 
-Use this command to watch it:
-``
-    kubectl logs -f PODNAME
-``
+Go to http://localhost:3003 (or 127.0.0.1:3003 if the former does not work).
+
+You should see:
+
+![alt text](image.png)
+
 
