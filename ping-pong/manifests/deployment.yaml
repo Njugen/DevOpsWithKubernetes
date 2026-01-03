@@ -12,17 +12,27 @@ spec:
       labels:
         app: pong-app
     spec:
+      volumes:
+        - name: course-storage-volume
+          persistentVolumeClaim:
+            claimName: course-storage-claim
       containers:
         - name: log-output-app
-          image: njugen/log_output:1.7
+          image: njugen/log_output:1.11
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          volumeMounts:
+          - name: course-storage-volume
+            mountPath: /usr/src/files
         - name: pong-app
-          image: njugen/pong-app:1.9
+          image: njugen/pong-app:1.11
           imagePullPolicy: Always
           env:
             - name: PORT
               value: "3001"
           ports:
             - containerPort: 3001
+          volumeMounts:
+          - name: course-storage-volume
+            mountPath: /usr/src/files
