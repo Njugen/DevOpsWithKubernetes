@@ -12,7 +12,26 @@ spec:
       labels:
         app: log-output-app
     spec:
+      volumes:
+        - name: file-storage
+          emptyDir: {}
       containers:
-        - name: log-output-app
-          image: njugen/log_output:1.7
+        - name: log-output-get-text
+          image: njugen/log_output:1.10
           imagePullPolicy: Always
+          volumeMounts:
+          - name: file-storage
+            mountPath: /usr/src/files
+          ports:
+            - containerPort: 3000
+        - name: log-output-set-text
+          image: njugen/log_output:1.10
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: file-storage
+            mountPath: /usr/src/files
+          env:
+            - name: PORT
+              value: "3001"
+          ports:
+            - containerPort: 3001
