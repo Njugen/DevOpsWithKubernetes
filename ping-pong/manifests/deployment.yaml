@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pong-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pong-app
+  template:
+    metadata:
+      labels:
+        app: pong-app
+    spec:
+      containers:
+        - name: log-output-app
+          image: njugen/log_output:1.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+        - name: pong-app
+          image: njugen/pong-app:1.9
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "3001"
+          ports:
+            - containerPort: 3001
