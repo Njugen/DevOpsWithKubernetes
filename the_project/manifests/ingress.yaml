@@ -6,6 +6,13 @@ spec:
   rules:
   - http:
       paths:
+      - path: /storage
+        pathType: Prefix
+        backend:
+          service:
+            name: todo-app-service
+            port:
+              number: 1235
       - path: /
         pathType: Prefix
         backend:
