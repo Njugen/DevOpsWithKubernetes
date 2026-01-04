@@ -11,3 +11,7 @@ spec:
       protocol: TCP
       port: 1234
       targetPort: 3000
+    - name: backend-port
+      port: 1235
+      protocol: TCP
+      targetPort: 3001

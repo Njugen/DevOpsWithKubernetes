@@ -12,10 +12,30 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+        - name: todo-storage-volume
+          persistentVolumeClaim:
+            claimName: todo-storage-claim
       containers:
         - name: todo-app
-          image: njugen/todo-app:1.8
+          image: njugen/todo-app:1.12
           imagePullPolicy: Always
           env:
             - name: PORT
               value: "3000"
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+          - name: todo-storage-volume
+            mountPath: /usr/src/files/images
+        - name: todo-backend
+          image: njugen/todo-backend:1.12
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "3001"
+          ports:
+            - containerPort: 3001
+          volumeMounts:
+          - name: todo-storage-volume
+            mountPath: /usr/src/files/images
